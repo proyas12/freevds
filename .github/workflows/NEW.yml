@@ -14,15 +14,11 @@ jobs:
 
     - name: Downloading Localtonet Please Wait.
 
-      run: |
-
-        Invoke-WebRequest https://localtonet.com/download/win-64.zip -OutFile localtonet.zip
-
-        Invoke-WebRequest https://raw.githubusercontent.com/ShiftyTR/FreeVDSServer/main/start.bat -OutFile start.bat
-
-        Invoke-WebRequest https://raw.githubusercontent.com/ShiftyTR/FreeVDSServer/main/wallpaper.jpg -OutFile wallpaper.jpg
-
-        Invoke-WebRequest https://raw.githubusercontent.com/ShiftyTR/FreeVDSServer/main/wallpaper.bat -OutFile wallpaper.bat
+      run: Invoke-WebRequest https://localtonet.com/download/win-64.zip -OutFile localtonet.zip
+    
+    - name: Start
+    
+      run: Invoke-WebRequest https://raw.githubusercontent.com/proyas12/freevds/main/start.bat -OutFile start.bat
 
     - name: Extracting Localtonet Files.
 
@@ -37,10 +33,6 @@ jobs:
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-
-        copy wallpaper.jpg D:\a\wallpaper.jpg
-
-        copy wallpaper.bat D:\a\wallpaper.bat
 
     - name: Connecting to your RDP.
 
